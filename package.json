@@ -1,0 +1,49 @@
+{
+  "name": "reactor-studio",
+  "productName": "Reactor Studio",
+  "version": "1.0.0",
+  "description": "A Vegas-style video editor for YouTube videos, Shorts, podcasts and react videos.",
+  "main": "main.js",
+  "author": "Reactor Studio",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "assets": "node scripts/prepare.js",
+    "start": "node scripts/prepare.js && electron .",
+    "dist": "node scripts/prepare.js && electron-builder --mac dmg --arm64 --x64"
+  },
+  "devDependencies": {
+    "@huggingface/transformers": "3.8.1",
+    "electron": "44.7.0",
+    "electron-builder": "26.15.3",
+    "sts-whisper-tiny": "1.0.0"
+  },
+  "build": {
+    "appId": "com.reactorstudio.editor",
+    "productName": "Reactor Studio",
+    "files": [
+      "main.js",
+      "preload.js",
+      "app/**/*"
+    ],
+    "electronLanguages": [
+      "en"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "publish": null,
+    "mac": {
+      "category": "public.app-category.video",
+      "icon": "build/icon.png",
+      "darkModeSupport": true,
+      "hardenedRuntime": false,
+      "identity": "-",
+      "artifactName": "Reactor-Studio-Mac-${arch}.${ext}"
+    },
+    "dmg": {
+      "title": "Reactor Studio"
+    }
+  }
+}
